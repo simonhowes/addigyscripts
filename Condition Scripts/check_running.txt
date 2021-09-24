@@ -1,0 +1,14 @@
+needsPgrepCheck="true"     #Set to "true" if app must be closed to update
+pgrepValue="TeamViewer"        #Process ID name for pgrep check
+
+
+#### IS RUNNING CHECK ####
+if [ "$needsPgrepCheck" = "true" ]; then
+  if pgrep "$pgrepValue"; then
+    echo "Required process running, deferring version check to next check-in"
+    exit 1
+  else
+    echo "Required process not running, proceeding with version check."
+  fi
+fi
+#### END IS RUNNING CHECK ####

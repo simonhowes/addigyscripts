@@ -1,0 +1,11 @@
+#Grab macOS version into variables
+macOSVersion=$(sw_vers -productVersion | awk -F. '{print $1}')
+majorVersion=$(sw_vers -productVersion | awk -F. '{print $2}')
+
+#Check if device is Catalina or newer. Skip install if older
+if (( macOSVersion >= 11 || ( macOSVersion = 10 && majorVersion >= 15 ) )); then
+    echo "OS is Catalina or newer. Continuing..."
+else
+    echo "OS is older than Catalina. Skipping install.."
+    exit 1
+fi
